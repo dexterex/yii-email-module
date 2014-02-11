@@ -119,13 +119,11 @@ class EmailSpool extends EmailActiveRecord
         ));
     }
 
-    /**
-     * @param $value mixed
-     * @return string
-     */
-    public static function pack($value)
+
+		  public static function pack($value)
     {
-        return gzcompress(serialize($value));
+        return pg_escape_bytea(serialize($value));
+        //return $value;
     }
 
     /**
@@ -134,8 +132,10 @@ class EmailSpool extends EmailActiveRecord
      */
     public static function unpack($value)
     {
-        return unserialize(gzuncompress($value));
+        //return unserialize(gzuncompress($value));
+        return unserialize(pg_unescape_bytea($value));
     }
+
 
     /**
      * @return Swift_Message
