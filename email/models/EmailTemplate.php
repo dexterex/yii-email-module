@@ -69,7 +69,7 @@ class EmailTemplate extends EmailActiveRecord
             $rules[] = array('id, name, subject, heading, message', 'safe');
         }
         if (in_array($this->scenario, array('create', 'update'))) {
-            $rules[] = array('name, subject, heading, message', 'required');
+            $rules[] = array('name, subject, message', 'required');
             $rules[] = array('name, subject', 'length', 'max' => 255);
         }
         return $rules;

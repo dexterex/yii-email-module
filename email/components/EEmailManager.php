@@ -58,7 +58,7 @@ class EEmailManager extends CComponent
     /**
      * @var array List of template parts that will be rendered.
      */
-    public $templateFields = array('subject', 'heading', 'message');
+    public $templateFields = array('subject', 'heading','message');
 
     /**
      * @var string The default transport to use.
