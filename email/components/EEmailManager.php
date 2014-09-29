@@ -188,7 +188,13 @@ class EEmailManager extends CComponent
         }
 
         // send the message using the transport
-        return Swift_Mailer::newInstance($swiftTransport)->send($swiftMessage);
+        $res = null;
+        try{
+          $res = Swift_Mailer::newInstance($swiftTransport)->send($swiftMessage);
+        }catch (Exception $e ){
+          Yii::log("Error sending mail".$e->getMessage(),'debug', 'emailModule'); 
+        }
+        return $res;
     }
 
     /**
